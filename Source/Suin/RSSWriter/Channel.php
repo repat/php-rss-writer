@@ -22,6 +22,8 @@ class Channel implements \Suin\RSSWriter\ChannelInterface
 	protected $lastBuildDate;
 	/** @var int */
 	protected $ttl;
+	/** @var string */
+	protected $image;
 	/** @var \Suin\RSSWriter\ItemInterface[] */
 	protected $items = array();
 
@@ -120,6 +122,17 @@ class Channel implements \Suin\RSSWriter\ChannelInterface
 	}
 
 	/**
+	 * Set image
+	 * @param string $image
+	 * @return $this
+	 */
+	public function image($image)
+	{
+		$this->image = $image;
+		return $this;
+	}
+
+	/**
 	 * Add item object
 	 * @param \Suin\RSSWriter\ItemInterface $item
 	 * @return $this
@@ -176,6 +189,12 @@ class Channel implements \Suin\RSSWriter\ChannelInterface
 		{
 			$xml->addChild('ttl', $this->ttl);
 		}
+         
+        if ( $this->image !== null)
+		{
+			$tmp = $xml->addChild('itunes:image', '');
+            $tmp->addAttribute('url', $this->image);
+        }
 
 		foreach ( $this->items as $item )
 		{
