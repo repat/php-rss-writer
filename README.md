@@ -6,6 +6,7 @@ This library can also be used to publish Podcasts.
 
 The build status of the current master branch is tracked by Travis CI: [![Build Status](https://secure.travis-ci.org/suin/php-rss-writer.png?branch=master)](http://travis-ci.org/suin/php-rss-writer)
 
+*modification by repat*: I wanted to be able to add a `itunes:image` to the channel(and later every podcast episode) but unfortunately it somehow cuts at the colon and only `image` is printed out. It works for normal RSS Clients like the one built-in Firefox but e.g. not in my Podcatcher. 
 
 Implementation:
 
@@ -18,6 +19,7 @@ $channel
 	->title("Channel Title")
 	->description("Channel Description")
 	->url('http://blog.example.com')
+	->image('http://example.com/logo.png')
 	->appendTo($feed);
 
 // RSS item
@@ -50,6 +52,7 @@ Output:
     <title>Channel Title</title>
     <link>http://blog.example.com</link>
     <description>Channel Description</description>
+    <image url="http://example.com/logo.png"></image>
     <item>
       <title>Blog Entry Title</title>
       <link>http://blog.example.com/2012/08/21/blog-entry/</link>
