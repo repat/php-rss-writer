@@ -192,8 +192,9 @@ class Channel implements \Suin\RSSWriter\ChannelInterface
          
         if ( $this->image !== null)
 		{
-			$tmp = $xml->addChild('itunes:image', '');
-            $tmp->addAttribute('url', $this->image);
+            $tmp = $this->image;
+			$image = $xml->addChild('itunes:image', null, 'http://www.itunes.com/dtds/podcast-1.0.dtd');
+            $image->addAttribute('href', $tmp);
         }
 
 		foreach ( $this->items as $item )
